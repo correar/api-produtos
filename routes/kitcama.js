@@ -18,6 +18,7 @@ router.route('/kitcamas')
     kitcama.tamanho = req.body.tamanho;
     kitcama.cores = req.body.cores;
     kitcama.preco_atual = req.body.preco_atual;
+    kticama.fotos = req.body.fotos;
 
     kitcama.save(function(err){
     if(err){
@@ -49,19 +50,35 @@ router.route('/kitcamas')
     })
     .put(function(req,res){
       const update = req.body;
-      Kitcama.findByIdAndUpdate(req.params.kitcama_id, update, function(err, kitcama){
-        if(err)
+      if(update.preco_atual){
+        Kitcama.findById(req.params.kitcama_id, function(err, kitcama){
+          update.preco_anterior = kitcama.preco_atual;
+          console.log("PRECO "+update.preco_anterior);
+          Kitcama.findByIdAndUpdate(req.params.kitcama_id, update, function(err, ukitcama){
+
+            if(err)
+              res.status(500).json({error: 'Produto Kit Cama não encontrado: '+err.message});
+            res.json(ukitcama);
+            res.end();
+          });
+        });
+      }else{
+        Kitcama.findByIdAndUpdate(req.params.kitcama_id, update, function(err, ukitcama){
+
+          if(err)
             res.status(500).json({error: 'Produto Kit Cama não encontrado: '+err.message});
-        res.json(kitcama);
-         res.end();
-      });
+          res.json(ukitcama);
+          res.end();
+        });
+      }
+      
     })
     .delete(function(req,res){      
       Kitcama.findByIdAndRemove(req.params.kitcama_id, function(err, kitcama){
         if(err)
             res.status(500).json({error: 'Produto Kit Cama não encontrado: '+err.message});
         res.json({message: 'Produto Excluído com Sucesso!'});
-         res.end();
+        res.end();
         
       });
     });
