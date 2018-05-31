@@ -57,10 +57,30 @@ router.route('/kitcamas')
         res.json(kitcama);
         res.end();
       });
+    })
+    .put(function(req,res){
+      const update = req.body;
+      Kitcama.findByIdAndUpdate(req.params.kitcama_id, update, function(err, kitcama){
+        if(err)
+            res.status(500).json({error: 'Produto Kit Cama não encontrado: '+err.message});
+        res.json(kitcama);
+         res.end();
+      });
+    })
+    .delete(function(req,res){      
+      Kitcama.findByIdAndRemove(req.params.kitcama_id, function(err, kitcama){
+        if(err)
+            res.status(500).json({error: 'Produto Kit Cama não encontrado: '+err.message});
+        res.json({message: 'Produto Excluído com Sucesso!'});
+         res.end();
+        
+      });
     });
+
 //Definindo um padrão das rotas prefixadas: /api
 app.use('/api',router);
 //Iniciando Aplicação
+
 app.listen(port, function(){
   console.log('App listening on port %s', port);
   console.log('Press Ctrl+C to quit');
