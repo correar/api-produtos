@@ -4,6 +4,8 @@
   "description": "api com conexao ao banco com os produtos",
   "main": "app.js",
   "scripts": {
+    "start": "node app.js",
+    "deploy": "gcloud app deploy",
     "dev": "nodemon"
   },
   "repository": {
