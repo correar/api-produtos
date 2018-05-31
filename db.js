@@ -19,7 +19,7 @@ let uri = `mongodb://${user}:${pass}@${host}:${port}`;
 if (nconf.get('mongoDatabase')) {
   uri = `${uri}/${nconf.get('mongoDatabase')}`;
 }
-console.log(uri);
+
 
 
 module.exports = { Mongoose: mongoose, uri: uri }

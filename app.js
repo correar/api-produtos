@@ -20,34 +20,6 @@ db.Mongoose.connect(db.uri);
 
 const Kitcama = require('./app/models/kitcama.js');
 
-/*
-router.get('/kitcamas/', function(req,res){
-  kitcama.find({}, function(e,docs){
-    res.json(docs);
-    res.end();
-  });
-});
-
-router.post('/kitcamas/', function(req,res,next){
-  const newkitcama = new kitcama({
-    nome: req.body.nome,
-    linha: req.body.linha,
-    tamanho: req.body.tamanho,
-    cores: req.body.cores,
-    preco_atual: req.body.preco_atual,
-  });
-  newkitcama.save(function(err){
-    if(err){
-      res.status(500).json({error: err.message});
-      res.end()
-      return;
-    }
-    res.json(newkitcama);
-      res.end();
-    });
-  });
-*/
-
 router.route('/kitcamas')
   .post(function(req,res) {
     const kitcama = new Kitcama();
@@ -77,6 +49,15 @@ router.route('/kitcamas')
       });
     });
 
+  router.route('/kitcamas/:kitcama_id')
+    .get(function(req,res){
+      Kitcama.findById(req.params.kitcama_id, function(err, kitcama){
+        if(err)
+            res.status(500).json({error: 'Produto Kit Cama não encontrado: '+err.message});
+        res.json(kitcama);
+        res.end();
+      });
+    });
 //Definindo um padrão das rotas prefixadas: /api
 app.use('/api',router);
 //Iniciando Aplicação
