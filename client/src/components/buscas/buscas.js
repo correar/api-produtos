@@ -1,27 +1,36 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './buscas.css';
+//import Produtos from '../produtos/produtos';
 
-class Buscas extends Component {
-  constructor(){
+
+/*class Buscas extends Component {
+  constructor() {
     super();
     this.state = {
-      produto: []
-    }
+      search: ''
+    };
   }
-  updateSearch(event){
-    this.setState({produto: event.target.value.substr(0,5)});
-    /*fetch('/api/kitcamas/')
-    .then(res=>res.json())
-    .then(produtos => this.setState({produto}, ()=> console.log('Produtos coletados...', produtos)));*/
+
+  updateSearch(event) {
+    this.setState({search:event.target.value})
   }
 
   render() {
-    return (
+    /*let produtosFiltrados = Produtos.props.produtos.filter(
+      (produto) => {
+        return produto.nome.indexOf(this.state.search) !== -1;
+      }
+    );*/
+const Buscas = ({ onChange }) => (
+    //return (
       <div>
-        <input type="text" value={this.state.produto} onChange={this.updateSearch.bind(this)}/>
+        <input type="text" 
+          onChange={onChange}
+        />
       </div>
+      
     );
-  }
-}
+//  }
+//}
 
 export default Buscas;
