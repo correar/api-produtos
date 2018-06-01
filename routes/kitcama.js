@@ -41,7 +41,7 @@ router.route('/kitcamas')
 
   router.route('/kitcamas/:kitcama_id')
     .get(function(req,res){
-      Kitcama.findById(req.params.kitcama_id, function(err, kitcama){
+      Kitcama.find({'nome': {$regex: req.params.kitcama_id}}, function(err, kitcama){
         if(err)
             res.status(500).json({error: 'Produto Kit Cama não encontrado: '+err.message});
         res.json(kitcama);

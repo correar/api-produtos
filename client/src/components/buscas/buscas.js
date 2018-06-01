@@ -5,19 +5,20 @@ class Buscas extends Component {
   constructor(){
     super();
     this.state = {
-      produtos: []
+      produto: []
     }
   }
-  componentDidMount(){
-    fetch('/api/kitcamas')
+  updateSearch(event){
+    this.setState({produto: event.target.value.substr(0,5)});
+    /*fetch('/api/kitcamas/')
     .then(res=>res.json())
-    .then(produtos => this.setState({produtos}, ()=> console.log('Produtos coletados...', produtos)));
+    .then(produtos => this.setState({produto}, ()=> console.log('Produtos coletados...', produtos)));*/
   }
 
   render() {
     return (
       <div>
-       
+        <input type="text" value={this.state.produto} onChange={this.updateSearch.bind(this)}/>
       </div>
     );
   }

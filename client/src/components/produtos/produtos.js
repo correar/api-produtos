@@ -17,19 +17,19 @@ class Produtos extends Component {
   render() {
     return (
       <div>
-        <div class="title">Kit Cama</div>
-        <div class="products">
+        <div className="title">Kit Cama</div>
+        <div className="products">
           {this.state.produtos.map(produto => 
-            <div class="product" key={produto.id}>
-              <div class="product-picture" >{produto.fotos}</div>
-              <div class="product-title">{produto.nome}
-                <div class="product-subtitle">{produto.linha} - {produto.tamanho} - {produto.cores}</div>
+            <div key={produto._id} className="product" >
+              <div className="product-picture" >{produto.fotos}</div>
+              <div className="product-title">{produto.nome}
+                <div className="product-subtitle">{produto.linha} - {produto.tamanho} - {produto.cores}</div>
               </div>
-              <div class="product-prices">
+              <div className="product-prices">
                 {produto.preco_anterior ? (
-                  <label class="product-last-price">R$ {produto.preco_anterior} por </label>
+                  <label className="product-last-price">R$ {produto.preco_anterior} por </label>
                 ):""}
-                <label class="product-current-price">R$ {produto.preco_atual}</label>
+                <label className="product-current-price">R$ {produto.preco_atual}</label>
               </div>
             </div>
           )}
