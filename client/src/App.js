@@ -3,31 +3,26 @@ import logo from './mmartan_com.png';
 import './App.css';
 import Produtos from './components/produtos/produtos';
 import Buscas from './components/buscas/buscas';
-import FiltraProdutos from './components/buscas/filtraProdutos';
+//import FiltraProdutos from './components/buscas/filtraProdutos';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      search: '',
       produtos:[]
-      //filtraProdutos: ''
     };
   }
   updateSearch(event) {
-    this.setState({search:event.target.value});
-    fetch('/api/kitcamas/'+this.state.search)
-    .then(res=>res.json())
-    .then(produtos => this.setState({produtos}, ()=> console.log('Produtos filtrados...', produtos)));
+    fetch('/api/kitcamas/'+event.target.value)
+    .then(res=>res.json(), ()=> console.log(res=>res.json()))
+    .then(produtos => this.setState({produtos}, ()=> console.log('Produtos filtrados... ', produtos)));
   }
 
   componentDidMount(){
-    fetch('/api/kitcamas/'+this.state.search)
+    fetch('/api/kitcamas/')
     .then(res=>res.json())
-    .then(produtos => this.setState({produtos}, ()=> console.log('Produtos filtrados...', produtos)));
+    .then(produtos => this.setState({produtos}, ()=> console.log('Produtos encontrados...', produtos)));
   }
-
-  //this.setState({filtraProdutos:FiltraProdutos(this.state.search)});
 
   render() {
     return (
