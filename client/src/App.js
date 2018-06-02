@@ -1,9 +1,9 @@
+
 import React, { Component } from 'react';
 import logo from './mmartan_com.png';
 import './App.css';
 import Produtos from './components/produtos/produtos';
 import Buscas from './components/buscas/buscas';
-//import FiltraProdutos from './components/buscas/filtraProdutos';
 
 class App extends Component {
   constructor() {

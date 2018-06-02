@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { FormattedNumber } from 'react-intl';
 
 class Produto extends Component {
   
@@ -11,9 +12,9 @@ class Produto extends Component {
         </div>
         <div className="product-prices">
           {this.props.produto.preco_anterior ? (
-            <label className="product-last-price">R$ {this.props.produto.preco_anterior} por </label>
+            <label className="product-last-price"><FormattedNumber value={this.props.produto.preco_anterior} style="currency" currency="BRL" /> por </label>
           ):""}
-          <label className="product-current-price">R$ {this.props.produto.preco_atual}</label>
+          <label className="product-current-price"><FormattedNumber value={this.props.produto.preco_atual} style="currency" currency="BRL" /></label>
         </div>
       </div>
     );
