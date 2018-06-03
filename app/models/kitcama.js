@@ -9,7 +9,7 @@
     cores: {type: String, trim:true},
     preco_atual: Number,
     preco_anterior: Number,
-    fotos: [{type: Buffer, contentType: String}],
+    fotos: [{data: String, contentType: String}],
     atualizado: { type: Date, default: Date.now },
   });
 

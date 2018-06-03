@@ -2,6 +2,31 @@
 
 const express = require('express');
 const router = express.Router();
+const multer = require('multer');
+const fs = require('fs');
+
+const storage = multer.diskStorage({
+  destination: function(req, file, cb){
+    cb(null,'./public/uploads/');
+  },
+  filename: function(req, file, cb){
+    cb(null, file.originalname);
+  }
+});
+
+const fileFilter = (req,file,cb) => {
+  if(file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
+    cb(null, true);
+  } else {
+    cb(null, false);
+  }
+};
+
+const upload = multer({
+  storage: storage, 
+  limits: {fileSize: 1024 * 1024 * 5},
+  fileFilter: fileFilter
+});
 
 //configuação da conexão com o banco de dados
 const db = require('../db');
@@ -10,7 +35,7 @@ db.Mongoose.connect(db.uri);
 const Kitcama = require('../app/models/kitcama.js');
 
 router.route('/kitcamas')
-  .post(function(req,res) {
+  .post(upload.array('fotos'), function(req,res) {
     const kitcama = new Kitcama();
 
     kitcama.nome = req.body.nome;
@@ -18,7 +43,10 @@ router.route('/kitcamas')
     kitcama.tamanho = req.body.tamanho;
     kitcama.cores = req.body.cores;
     kitcama.preco_atual = req.body.preco_atual;
-    kticama.fotos = req.body.fotos;
+    req.files.forEach(function(value) {
+      kitcama.fotos.push({data: value.originalname, contentType: value.mimetype});
+    });
+   
 
     kitcama.save(function(err){
     if(err){

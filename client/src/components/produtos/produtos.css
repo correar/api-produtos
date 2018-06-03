@@ -54,12 +54,27 @@
 
 .product-picture{
 	display: inline-block;
-	width: 30%;
+	float: left;
+	width: 40%;
+	margin-left: 0;
+}
+
+img{
+	float:left;
+	width: 80px;
+	height: 70px;
+	padding: 15px 5px 10px 15px;
+}
+
+.product-picture::after {
+    content: "";
+    clear: both;
+    display: table;
 }
 
 .product-title{
 	display: inline-block;
-	width: 40%;
+	width: 30%;
 	float: left;
 	font-size: 13px;
 	font-weight: bold;
@@ -88,3 +103,4 @@
 .product-current-price{
 	padding-right: 20px;
 }
+

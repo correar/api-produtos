@@ -5,6 +5,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 
+
 //definindo a porta onde será executada a api
 const port = process.env.PORT || '8080';
 //criando uma instância das rotas via Express
@@ -17,6 +18,7 @@ app.use(bodyParser.json());
 
 //Definindo um padrão das rotas prefixadas: /api
 app.use('/api',router);
+app.use('/uploads', express.static('public/uploads/'));
 //Iniciando Aplicação
 
 app.listen(port, function(){

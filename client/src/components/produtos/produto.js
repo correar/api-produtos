@@ -6,7 +6,12 @@ class Produto extends Component {
   render() {
     return (
       <div key={this.props.produto._id} className="product" >
-        <div className="product-picture" >{this.props.produto.fotos}</div>
+        <div className="product-picture"> 
+        {this.props.produto.fotos.map((foto) => {
+              return <img src={'uploads/'+foto['data']} /> 
+          }
+        )}
+        </div>
         <div className="product-title">{this.props.produto.nome}
           <div className="product-subtitle">{this.props.produto.linha} - {this.props.produto.tamanho} - {this.props.produto.cores}</div>
         </div>
