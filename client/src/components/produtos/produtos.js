@@ -13,6 +13,20 @@ class Produtos extends Component {
     }
   }
 
+  start(tamanho,pagina){
+    let valor = tamanho*pagina;
+    if(valor == tamanho){
+      valor = 0;
+    }else{
+      valor = valor-tamanho;
+    }
+    return valor;
+  }
+  limit(tamanho,pagina){
+    let valor = tamanho*pagina;
+    return valor;
+  }
+
   render() {
     return (
       <IntlProvider locale="pt-BR">
@@ -30,7 +44,7 @@ class Produtos extends Component {
         {this.props.produtos.length > 0 ?
           
           <div className="products" >
-            {this.props.produtos.map((produto) => {
+            {this.props.produtos.slice(this.start(this.props.tamanho,this.props.pagina),this.limit(this.props.tamanho,this.props.pagina)).map((produto) => {
               return <Produto key={produto._id} produto={produto} />
             }
             )}

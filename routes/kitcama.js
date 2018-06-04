@@ -64,7 +64,7 @@ router.route('/kitcamas')
            res.status(500).json({error: 'Erro ao selecionar os Kit Cama: '+err.message});
         res.json(kitcamas);
         res.end();
-      });
+      }).limit(req.body.limit);
     });
 
   router.route('/kitcamas/:kitcama_id')

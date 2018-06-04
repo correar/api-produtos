@@ -8,7 +8,7 @@ class Produto extends Component {
       <div key={this.props.produto._id} className="product" >
         <div className="product-picture"> 
         {this.props.produto.fotos.map((foto) => {
-              return <img src={'uploads/'+foto['data']} /> 
+              return <img src={'https://api-produtos-205723.appspot.com/uploads/'+foto['data']} key={foto['_id']}/> 
           }
         )}
         </div>
