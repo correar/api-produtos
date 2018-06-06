@@ -27,6 +27,7 @@ class App extends Component {
     fetch('https://api-produtos-205723.appspot.com/api/kitcamas',{ method: 'get'})
     .then(res=>res.json())
     .then(produtos => this.setState({produtos}, ()=> console.log('Produtos ini encontrados...', produtos)));
+    document.title = "Lista de Produtos";
   }
 
   paginacaoSearch(event){
