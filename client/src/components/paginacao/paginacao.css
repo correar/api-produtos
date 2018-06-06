@@ -65,3 +65,41 @@ li button:hover{
 .ativo {
 	font-weight: bold;
 }
+
+@media only screen and (max-width: 480px ) {
+	.limit{
+		display: block;
+		width: 100%;
+		float: none;
+	}
+	.paginacao{
+		display: block;
+		width: 100%;
+		padding-bottom: 50px;
+	}
+	ul{
+		margin-top: 5px;
+		float: none;
+	}
+	li{
+		float: left;
+		padding-left: 0px;
+	}
+
+}
+
+@media only screen and (max-width: 640px ) and (min-width: 480px) {
+	select{
+		padding-left: 0px;
+		text-align: left;
+		text-align-last: left;
+	}		
+}
+
+@media only screen and (max-width: 1024px ) and (min-width: 650px) {
+	select{
+		padding-left: 0px;
+		text-align: left;
+		text-align-last: left;
+	}		
+}
